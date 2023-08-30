@@ -4,6 +4,8 @@ import './App.css';
 import DataForm from './components/DataForm/DataForm';
 import Header from './components/Header/Header';
 import Contact from './components/Contact/Contact';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App ()
 {
@@ -36,7 +38,8 @@ function App ()
       { contactsList.map( item =>
       {
         return <Contact name={ item.name } email={ item.email } number={ item.number } key={ item.id } id={ item.id } onDelete={ deleteHandler} />
-      })}
+      } ) }
+      <ToastContainer/>
     </div>
   );
 }

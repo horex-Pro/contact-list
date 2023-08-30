@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { toast } from 'react-toastify';
+
 const DataForm = ({onSave}) =>
 {
     
@@ -14,6 +16,18 @@ const DataForm = ({onSave}) =>
     
     const submitHandler = (e) =>
     {
+
+        if ( !e.target.name.value || !e.target.email || !e.target.number )
+        {
+            console.log('run')
+            toast.error( 'all fields are mandatory' )
+            e.preventDefault()
+            return;
+        }
+        else
+        {
+            toast.success('contact added')
+        }
         setContact( {
             name: e.target.name.value,
             email: e.target.email.value,
