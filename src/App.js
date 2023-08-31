@@ -40,10 +40,10 @@ function App ()
   },[])
 
   useEffect( () =>
-  { 
-    localStorage.setItem('contacts' , JSON.stringify(contactsList))
+  {
+    if ( contactsList.length > 0 ) localStorage.setItem( 'contacts', JSON.stringify( contactsList ) );
   },
-    [contactsList] )
+    [ contactsList ] );
 
   return (
     <div>
