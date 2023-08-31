@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DataForm from './components/DataForm/DataForm';
 import Header from './components/Header/Header';
@@ -16,7 +16,7 @@ function App ()
   {
     if ( newContact )
     {
-      setContactsList([...contactsList,newContact])
+      setContactsList( [ ...contactsList, newContact ] );
     }
   }
 
@@ -30,6 +30,20 @@ function App ()
 
     setContactsList(newContactList)
   }
+
+
+  useEffect( () =>
+  {
+    const savedData = JSON.parse( localStorage.getItem( 'contacts' ) );
+    if ( savedData ) setContactsList( savedData );
+
+  },[])
+
+  useEffect( () =>
+  { 
+    localStorage.setItem('contacts' , JSON.stringify(contactsList))
+  },
+    [contactsList] )
 
   return (
     <div>
